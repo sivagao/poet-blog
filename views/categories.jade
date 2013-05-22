@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1 全部类别
+  ul
+    - each cat in categoryList
+      li
+        a(href=categoryUrl(cat)) #{cat}

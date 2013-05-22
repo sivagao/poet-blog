@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  h1
+    a(href='http://github.com/jsantell', title='Jordan Santell on GitHub') Open Source Projects
+
+  h2 Popular Projects
+  ul.projects
+    - each project in repos.popular
+      include includes/project
+
+  h2 Components
+  ul.projects
+    - each project in repos.components
+      include includes/project
+
+  h2 Node Modules
+  ul.projects
+    - each project in repos.node
+      include includes/project
+
+  h2 Browser
+  ul.projects
+    - each project in repos.browser
+      include includes/project
+
+  h2 Contributions
+  ul.projects
+    - each project in repos.contributions
+      include includes/project

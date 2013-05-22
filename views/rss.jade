@@ -1,0 +1,18 @@
+doctype xml
+rss(version='2.0', xmlns:atom='http://www.w3.org/2005/Atom')
+  channel
+    title Sivagao
+    link http://siva.is26.com
+    description Sivagao's blog
+    atom:link(href='http://siva.is26.com/rss', rel='self', type='application/rss+xml')
+    each post in posts
+      - var fullUrl = 'http://siva.is26.com' + post.url
+      item
+        title= post.title
+        link= fullUrl
+        description
+          | <![CDATA[
+          | !{post.preview}
+          | ]]>
+        pubDate= post.date.toUTCString()
+        guid= fullUrl

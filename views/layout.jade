@@ -1,0 +1,74 @@
+!!!
+html
+  head
+    //- Output page title
+    - if (typeof post !== "undefined" && post.title !== "undefined")
+      title= post.title + " * Jordan Santell"
+      meta(name='description', content=post.description)
+    - else if (typeof tag !== "undefined")
+      title= tag + " * Jordan Santell"
+      meta(name='description', content='Jordan Santell, posts tagged with #{tag}')
+    - else if (typeof category !== "undefined")
+      title= category + " * Jordan Santell"
+      meta(name='description', content='Jordan Santell, posts of category #{category}')
+    - else if (typeof title !== "undefined" )
+      title= title
+      meta(name='description', content='Jordan Santell, JavaScript engineer and development blog, open source projects, and discussion.')
+    - else
+      title= 'Jordan Santell'
+      meta(name='description', content='Jordan Santell, JavaScript engineer and development blog, open source projects, and discussion.')
+
+    link(rel='alternate', type='application/rss+xml', title='RSS', href='http://jsantell.com/rss')
+    meta(charset='utf-8')
+    link(rel='icon', type='image/png', href='/favicon.png')
+    - if (settings.env == 'development')
+      link(rel='stylesheet', href='/css/normalize.css')
+      link(rel='stylesheet', href='/css/layout.css')
+      link(rel='stylesheet', href='/css/font-awesome.css')
+      link(rel='stylesheet', href='/css/prettify.css')
+    - else
+      link(rel='stylesheet', href='/css/site.css')
+    script(src='/js/ga.js')
+  body
+    .wrap
+      .container
+        .content
+          block content
+        .sidebar
+
+          h2.name
+            a(href='/') Jordan Santell
+          h3.projects
+            a(href='/projects') Projects
+          h3.categories
+            a(href='/categories') Categories
+          ul
+            - each cat in categoryList
+              li
+                a(href=categoryUrl(cat)) #{cat}
+          h3.tags
+            a(href='/tags') tags
+          ul
+            - each tag in tagList
+              li
+                a(href=tagUrl(tag)) #{tag}
+        .clear
+    .footer
+      .container
+        .span
+          h3 who is this
+          include includes/about
+          include includes/social
+        .span
+          h3 and why won't they stop screaming
+          .tweets
+        .clear
+  - if (settings.env == 'development')
+    script(src='/js/jquery.js')
+    script(src='/js/jquery.sharrre.js')
+    script(src='/js/jquery.tweet.js')
+    script(src='/js/jquery.ghRepo.js')
+    script(src='/js/prettify.js')
+    script(src='/js/ui.js')
+  - else
+    script(src='/js/site.min.js')
