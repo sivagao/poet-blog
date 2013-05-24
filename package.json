@@ -12,7 +12,7 @@
   "dependencies": {
     "express": ">= 3.0.0rc5",
     "jade": ">= 0.20.3",
-    "poet": ">= 0.2.4", // simple blog engine
+    "poet": ">= 0.2.4",
     "node-schedule": ">= 0.1.8",
     "request": ">= 2.16.6",
     "html-to-text": ">= *",
@@ -23,9 +23,4 @@
     "grunt": ">=0.4.0",
     "grunt-contrib": ">=0.6.0"
   }
-  // "subdomain": "siva",
-  // "domains": [
-  //   "www.siva.com",
-  //   "siva.com"
-  // ]
 }
