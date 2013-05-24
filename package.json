@@ -18,9 +18,5 @@
     "html-to-text": ">= *",
     "underscore": ">= *",
     "async": ">= *"
-  },
-  "devDependencies": {
-    "grunt": ">=0.4.0",
-    "grunt-contrib": ">=0.6.0"
   }
 }

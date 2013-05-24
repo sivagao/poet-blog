@@ -1,4 +1,50 @@
 
+// phantomjs /home/sivagao/projects/phantomjs_scripts/pjscrape/pjscrape.js pjscrapedemo.js
+pjs.config({
+    // options: 'stdout', 'file' (set in config.logFile) or 'none'
+    log: 'stdout',
+    // options: 'json' or 'csv'
+    format: 'json',
+    // options: 'stdout' or 'file' (set in config.outFile)
+    writer: 'file',
+    outFile: 'scrape_output.json'
+});
+
+pjs.addSuite({
+    // single URL or array
+    url: 'http://book.douban.com/people/sivaGao/do',
+    // single function or array, evaluated in the client
+    scraper: function() {
+            var readingbooks = {};
+            // var totalReg = /我在读的书\((.*)\)/;
+            // readingbooks.total = totalReg.exec($('.user-profile-nav h1').text().trim())[1];
+            var itemData;
+            readingbooks.books = [];
+            $('.subject-item').each(function(idx,item){
+                console.log(item);
+                item = $(item);
+                // $(item).find
+                itemData = {
+                    'title': item.find('h2').text().trim().replace(/\s{2}/g,''),
+                    'author': item.find('.pub').text().trim().replace(/( )+/g,''),
+                    'cover': item.find('.pic img').attr('src'),
+                    'link': item.find('h2 a').attr('href'),
+                    'starttime': item.find('.short-note .date').text().substr(0,10),
+                    'description': item.find('.short-note .comment').text().trim(),
+                    'rating': item.find('.short-note div span').eq(0)[0].className.charAt(6)
+                };
+                readingbooks.books.push(itemData);
+            });
+            return readingbooks;
+    }
+});
+
+// how to daily(on schedule to crawler it ?!)
+// using node-schedule or just crontab?!
+var schedule  = require('node-schedule');
+schedule.scheduleJob('0 * * * *', updateRepoData); //?!
+
+// http://book.douban.com/people/sivaGao/do
 var readingbooks = {};
 // var totalReg = /我在读的书\((.*)\)/;
 // readingbooks.total = totalReg.exec($('.user-profile-nav h1').text().trim())[1];
