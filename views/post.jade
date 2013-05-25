@@ -12,10 +12,29 @@ block content
       - each tag in post.tags
         a(href=tagUrl(tag))
           span.label.label-info #{tag}
-    .share(data-url='http://jsantell.com'+post.url, data-text=post.description, data-title='share this page')
+    // .share(data-url='http://jsantell.com'+post.url, data-text=post.description, data-title='share this page')
     #disqus_thread
     script
       var disqus_identifier = '!{post.slug}';
-    script(src='/js/disqus.js')
+    // script(src='/js/disqus.js')
     noscript Please enable JavaScript to view comments
+block style_head
+  style(type="text/css")
+    #menuIndex {
+      position: fixed;
+      top: 60px;
+      right: 80px;
+      width: 250px;
+      overflow: auto;
+    }
+    #menuIndex ul{display: block}
+    /**************目录导航**************/
+    #menuIndex a {display:block}
+    #menuIndex a:hover {text-decoration:none;}
+    #menuIndex ul li{font-size:12px;margin-bottom:5px;word-wrap:break-word;padding-left:10px;}
+    #menuIndex ul li.on{background-color:#eee}
+    #menuIndex li.h1{font-size:14px;font-weight:normal;padding-left:0;margin-bottom:10px;}
+    #menuIndex li.h3{padding-left:25px;}
+block script_footer
+  script(src='/js/blog_post.js')
 

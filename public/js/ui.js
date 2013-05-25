@@ -8,7 +8,7 @@ $(function () {
     });
 
     $('.tweets').tweet({
-        username: 'jsantell',
+        username: 'ghlndsl',
         avatar_size: 32,
         filter: function(t){ return ! /^@\w+/.test(t.tweet_raw_text); },
         count: 5,
@@ -19,26 +19,26 @@ $(function () {
         $(this).attr('href', 'mailto:' + 'jsantell' + '@' + 'gmail.com');
     });
 
-    $('.share').sharrre({
-        share: {
-            googlePlus: true,
-            facebook: true,
-            twitter: true
-        },
-        enableTracking: true,
-        buttons: {
-            googlePlus: { size: 'tall' },
-            facebook: { layout: 'box_count' },
-            twitter: { count: 'vertical' }
-        },
-        hover: function (api, options) {
-            $(api.element).find('.buttons').show();
-        },
-        hide: function(api, options) {
-            $(api.element).find('.buttons').hide();
-        },
-        urlCurl: '/sharrre.php' // ewww
-    });
+    // $('.share').sharrre({
+    //     share: {
+    //         googlePlus: true,
+    //         facebook: true,
+    //         twitter: true
+    //     },
+    //     enableTracking: true,
+    //     buttons: {
+    //         googlePlus: { size: 'tall' },
+    //         facebook: { layout: 'box_count' },
+    //         twitter: { count: 'vertical' }
+    //     },
+    //     hover: function (api, options) {
+    //         $(api.element).find('.buttons').show();
+    //     },
+    //     hide: function(api, options) {
+    //         $(api.element).find('.buttons').hide();
+    //     },
+    //     urlCurl: '/sharrre.php' // ewww
+    // });
 
 
     prettyPrint();

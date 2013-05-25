@@ -3,5 +3,6 @@ extends layout
 block content
   h1
     a(href=tagUrl(tag)) posts tagged * #{tag}
+  hr
   - each post in posts
     include includes/postSnippet

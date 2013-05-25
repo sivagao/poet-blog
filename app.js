@@ -7,7 +7,7 @@ var
   updateRepoData = require('./lib/update-repo-data');
 
 poet.set({
-  postsPerPage : 5,
+  postsPerPage : 4,
   posts        : __dirname + '/_posts',
   metaFormat   : 'json'
 }).createPostRoute('/post/:post', 'post')
@@ -34,8 +34,8 @@ app.configure('production', function () {
 require('./pages' )(app); // for other pages not just blog posts
 
 // Get repository data
-schedule.scheduleJob('0 * * * *', updateRepoData);
-updateRepoData();
+// schedule.scheduleJob('0 * * * *', updateRepoData);
+// updateRepoData();
 
 app.listen(9102); // for blog!!
 

@@ -3,20 +3,20 @@ html
   head
     //- Output page title
     - if (typeof post !== "undefined" && post.title !== "undefined")
-      title= post.title + " * Jordan Santell"
+      title= post.title + " * Sivagao"
       meta(name='description', content=post.description)
     - else if (typeof tag !== "undefined")
-      title= tag + " * Jordan Santell"
-      meta(name='description', content='Jordan Santell, posts tagged with #{tag}')
+      title= tag + " * Sivagao"
+      meta(name='description', content='Sivagao, posts tagged with #{tag}')
     - else if (typeof category !== "undefined")
-      title= category + " * Jordan Santell"
-      meta(name='description', content='Jordan Santell, posts of category #{category}')
+      title= category + " * Sivagao"
+      meta(name='description', content='Sivagao, posts of category #{category}')
     - else if (typeof title !== "undefined" )
       title= title
-      meta(name='description', content='Jordan Santell, JavaScript engineer and development blog, open source projects, and discussion.')
+      meta(name='description', content='Sivagao, JavaScript engineer and development blog, open source projects, and discussion.')
     - else
-      title= 'Jordan Santell'
-      meta(name='description', content='Jordan Santell, JavaScript engineer and development blog, open source projects, and discussion.')
+      title= 'Sivagao'
+      meta(name='description', content='Sivagao, JavaScript engineer and development blog, open source projects, and discussion.')
 
     link(rel='alternate', type='application/rss+xml', title='RSS', href='http://jsantell.com/rss')
     meta(charset='utf-8')
@@ -26,49 +26,55 @@ html
       link(rel='stylesheet', href='/css/layout.css')
       link(rel='stylesheet', href='/css/font-awesome.css')
       link(rel='stylesheet', href='/css/prettify.css')
+      block style_head
     - else
       link(rel='stylesheet', href='/css/site.css')
     script(src='/js/ga.js')
   body
+    .head
+      .logo.
+        <a href="/" title="Home">SivaGao's Blog</a>
     .wrap
       .container
         .content
           block content
-        .sidebar
-
-          h2.name
-            a(href='/') Jordan Santell
-          h3.projects
-            a(href='/projects') Projects
-          h3.categories
-            a(href='/categories') Categories
-          ul
-            - each cat in categoryList
-              li
-                a(href=categoryUrl(cat)) #{cat}
-          h3.tags
-            a(href='/tags') tags
-          ul
-            - each tag in tagList
-              li
-                a(href=tagUrl(tag)) #{tag}
         .clear
     .footer
       .container
-        .span
-          h3 who is this
+        .span(style="text-align:center")
+          h3 导航
+          .sidebar(style="text-align:left")
+              h2.name
+                a(href='/') Sivagao
+              h3.projects
+                a(href='/projects') Projects
+              h3.categories
+                a(href='/categories') Categories
+              ul
+                - each cat in categoryList
+                  li
+                    a(href=categoryUrl(cat)) #{cat}
+              h3.tags
+                a(href='/tags') tags
+              ul
+                - each tag in tagList
+                  li
+                    a(href=tagUrl(tag)) #{tag}
+          h3 关于
           include includes/about
           include includes/social
+          <a href="http://weibo.com/u/2487328132?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/2487328132/f1607a6f/1.png"/></a>
         .span
-          h3 and why won't they stop screaming
+          h3(style="text-align:center") 状态
           .tweets
         .clear
   - if (settings.env == 'development')
     script(src='/js/jquery.js')
-    script(src='/js/jquery.sharrre.js')
+    // script(src='/js/jquery.sharrre.js')
     script(src='/js/jquery.tweet.js')
-    script(src='/js/jquery.ghRepo.js')
+    // script(src='/js/jquery.ghRepo.js')
     script(src='/js/prettify.js')
     script(src='/js/ui.js')
+    block script_footer
   - else
     script(src='/js/site.min.js')

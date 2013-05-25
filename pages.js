@@ -1,7 +1,19 @@
 var repoData = require('./lib/repo-data');
 var html2text = require('html-to-text');
+var fs = require('fs');
 
 module.exports = function (app) {
+
+  // app.get('/doubanlikes', function(req, res){
+  //   res.json(require('./_data/doubanlikes.json'));
+  // });
+  app.get('/xiangce_mm', function(req, res){
+    // var picList = require('./_data/xiangce_mm.json').xiangce_data;
+    picList = fs.readdirSync('./public/img/xiangce');
+    res.render('xiangce_mm', {
+      picList: picList
+    });
+  });
 
   app.get('/', function (req, res) {
     res.render('index', {
