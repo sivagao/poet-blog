@@ -1,0 +1,64 @@
+extends admin_layout.jade
+
+block style_head
+    link(href='/css/fancyzoom.css', rel='stylesheet')
+    link(href='/css/isotope.css')
+    style
+
+block script_footer
+    script(src='/js/fancyzoom.js')
+    script(src="/js/jquery.isotope.min.js")
+    script
+        var fancyFilter = function(filterListSelector, gallerySelector) {
+            //Filter Button Code
+            $(filterListSelector + ' a').click(function() {
+                $(filterListSelector + ' li').removeClass('active');
+                var $this = $(this);
+                var filterType = $this.data('filter');
+                if(!filterType) return true;
+
+                $this.closest('li').addClass('active');
+                $(gallerySelector).isotope({ 
+                    filter: filterType,
+                });
+
+                return false;
+            });
+        };
+        $(function(){
+            // $('#gallery').hide();
+            $('#gallery').imagesLoaded( function(){
+                $('#gallery').show();
+                $(this).isotope();
+            });
+            fancyFilter('.filter', '#gallery');
+            $('#gallery img').fancyZoom({closeOnClick: true, directory:'/img/'});
+        });
+
+block content
+    .content
+        .container-fluid
+            .row-fluid
+                h2
+                | Gallery
+                span.info Use the button below to filter items
+                ul.filter.nav.nav-pills
+                    li.active
+                      a(href='#all', data-filter='.element') All
+                    li
+                      a(href='#images', data-filter='.img') img
+                    li
+                      a(href='#videos', data-filter='.imgxiangce') imgxiangce
+                    li
+                      a(href='#videos', data-filter='.imgposts') imgposts
+                #gallery.gallery(style='clear: both;')
+                    - each pic in picList
+                        - var identity = pic.path.split('/').join('');
+                        div(class="element thumbnail pull-left #{identity}")
+                            a(href='#')
+                                img(src=pic.path+pic.name)
+                                .image-data
+                                    span.pull-right
+                                        a(href='#')
+                                            i.icon-thumbs-up
+                                    span.title= pic.name

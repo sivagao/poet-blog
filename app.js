@@ -22,6 +22,13 @@ app.use(express.static(__dirname + '/public'));
 app.use(poet.middleware());
 app.use(app.router);
 app.use(handle404);
+app.use(express.logger());
+app.configure(function(){
+  // some other configuration code
+  app.locals.logger = function(arguments) {
+    console.log(arguments);
+  }
+});
 
 app.configure('development', function () {
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
